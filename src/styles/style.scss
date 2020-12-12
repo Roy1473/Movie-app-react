@@ -28,7 +28,8 @@ body {
   display: flex;
   margin: 0;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 1rem;
 }
 .movie-overview {
   position: absolute;
@@ -37,6 +38,9 @@ body {
   right: 0;
   background-color: #fff;
   padding: 1rem;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
   overflow: auto;

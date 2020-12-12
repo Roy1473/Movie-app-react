@@ -18,11 +18,21 @@ function App() {
       });
   }, []);
   return (
-    <div className="movie-content">
-      {movies.map((movie) => (
-        <Movie key={movie.id} data={movie} {...movie} />
-      ))}
-    </div>
+    <>
+      <header>
+        <input
+          type="text"
+          type="search"
+          className="serach-box"
+          placeholder="search"
+        />
+      </header>
+      <div className="movie-content">
+        {movies.map((movie) => (
+          <Movie key={movie.id} data={movie} {...movie} />
+        ))}
+      </div>
+    </>
   );
 }
 
