@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Movie from "./components/Movie";
+import Header from "./components/header";
 
 const APIKEY = "eb4e48e8cf76334c1aa24b48aaae72ee";
 const APIURL =
@@ -9,24 +10,25 @@ const SEARCHAPI =
   "https://api.themoviedb.org/3/search/movie?api_key=eb4e48e8cf76334c1aa24b48aaae72ee&page=1&include_adult=false&language=ja-JA&query=";
 function App() {
   const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    fetch(APIURL)
+  const [searchValue, setSearchValue] = useState("");
+  const getMovies = (API) => {
+    fetch(API)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setMovies(data.results);
+        if (data.results) {
+          setMovies(data.results);
+        }
       });
-  }, []);
+  };
+  useEffect(() => {
+    getMovies(SEARCHAPI + searchValue);
+  }, [searchValue]);
   return (
     <>
-      <header>
-        <input
-          type="text"
-          type="search"
-          className="serach-box"
-          placeholder="search"
-        />
-      </header>
+      <div className="header-component">
+        <Header searchValue={searchValue} setSearchValue={setSearchValue} />
+      </div>
       <div className="movie-content">
         {movies.map((movie) => (
           <Movie key={movie.id} data={movie} {...movie} />
