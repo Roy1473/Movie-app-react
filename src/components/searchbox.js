@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-const Header = (props) => {
+const SearchBox = (props) => {
   const [searchWord, setSearchWord] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     props.setSearchValue(searchWord);
-    setSearchWord("");
   };
   const handleChange = (e) => {
     setSearchWord(e.target.value);
   };
   return (
-    <header>
+    <>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -20,7 +19,7 @@ const Header = (props) => {
           placeholder="search"
         />
       </form>
-    </header>
+    </>
   );
 };
-export default Header;
+export default SearchBox;
