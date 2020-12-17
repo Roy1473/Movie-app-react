@@ -1,3 +1,6 @@
 node_modules
 dist
+src/components/todo-form.js
+src/components/todoItems.js
+src/components/todoList.js
 .env

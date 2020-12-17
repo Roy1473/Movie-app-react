@@ -1,11 +1,11 @@
 const path = require("path");
-const dotenv = require("dotenv");
+//const dotenv = require("dotenv");
 HtmlWebpackPlugin = require("html-webpack-plugin");
 const MODE = "development";
 // ソースマップの利用有無(productionのときはソースマップを利用しない)
 const enabledSourceMap = MODE === "development";
 module.exports = {
-  env: dotenv.config().parsed,
+  //env: dotenv.config().parsed,
   //メインとなるJavaScriptファイル（エントリーポイント）
   entry: `./src/index.js`,
   // ファイルの出力設定
@@ -69,9 +69,9 @@ module.exports = {
       template: "./src/index.html",
       filename: "./index.html",
     }),
-    new webpack.DefinePlugin({
-      "process.env": JSON.stringify(env),
-    }),
+    //new webpack.DefinePlugin({
+    //  "process.env": JSON.stringify(env),
+    //}),
   ],
   // ES5(IE11等)向けの指定
   target: "web",

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Movie from "./components/Movie";
 import Header from "./components/header";
-import Searchbox from "./components/searchbox";
-import SearchBox from "./components/searchbox";
+import TodoForm from "./components/todo-form";
+import TodoList from "./components/todoList";
 
 const APIKEY = "eb4e48e8cf76334c1aa24b48aaae72ee";
 const APIURL = `https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&sort_by=popularity.desc&page=1`;
@@ -11,6 +11,10 @@ const SEARCHAPI = `https://api.themoviedb.org/3/search/movie?api_key=${APIKEY}&p
 function App() {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [searchWord, setSearchWord] = useState("");
+  const [inputText, setInputText] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [count, setCount] = useState(0);
   const getMovies = (API) => {
     fetch(API)
       .then((res) => res.json())
@@ -31,7 +35,8 @@ function App() {
     <>
       <div className="header-component">
         <Header
-          searchBox={SearchBox}
+          searchWord={searchWord}
+          setSearchWord={setSearchWord}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
         />
@@ -40,6 +45,17 @@ function App() {
         {movies.map((movie) => (
           <Movie key={movie.id} data={movie} {...movie} />
         ))}
+      </div>
+      <div className="todo-content">
+        <TodoForm
+          todos={todos}
+          setTodos={setTodos}
+          inputText={inputText}
+          setInputText={setInputText}
+          count={count}
+          setCount={setCount}
+        />
+        <TodoList todos={todos} setTodos={setTodos} />
       </div>
     </>
   );
