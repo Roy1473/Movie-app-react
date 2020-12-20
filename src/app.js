@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Movie from "./components/Movie";
+import Favorite from "./components/favorite";
 import Header from "./components/header";
 import TodoForm from "./components/todo-form";
 import TodoList from "./components/todoList";
@@ -12,6 +13,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [searchWord, setSearchWord] = useState("");
+  const [favorities, setFavorities] = useState([]);
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
   const [count, setCount] = useState(0);
@@ -43,7 +45,19 @@ function App() {
       </div>
       <div className="movie-content">
         {movies.map((movie) => (
-          <Movie key={movie.id} data={movie} {...movie} />
+          <Movie
+            key={movie.id}
+            data={movie}
+            movie={movie}
+            favorities={favorities}
+            setFavorities={setFavorities}
+          />
+        ))}
+      </div>
+      <div className="favorite-component">
+        <h1>お気に入り</h1>
+        {favorities.map((favorite) => (
+          <Favorite key={favorite.id} data={favorite} favorite={favorite} />
         ))}
       </div>
       <div className="todo-content">
